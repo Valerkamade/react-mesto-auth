@@ -1,0 +1,29 @@
+.popup__button-save {
+  width: 238px;
+  color: var(--color-second);
+  background-color: var(--color-main);
+  border: 1px solid var(--color-main);
+  padding: 15px 0;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.popup__button-save:hover {
+  opacity: 0.8;
+}
+
+.popup__button-save:disabled {
+  opacity: 0.2;
+  border: 1px solid var(--color-main);
+  background-color: transparent;
+  color: var(--color-main);
+}
+
+@media (min-width: 880px) {
+  .popup__button-save {
+    width: 358px;
+    font-size: 18px;
+    line-height: 22px;
+    padding: 14px 0;
+  }
+}

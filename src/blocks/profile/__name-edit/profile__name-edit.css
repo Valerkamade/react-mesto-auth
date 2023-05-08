@@ -1,0 +1,19 @@
+.profile__name-edit {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+
+  margin: 0 0 7px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (min-width: 880px) {
+  .profile__name-edit {
+    gap: 18px;
+    justify-content: start;
+  }
+}

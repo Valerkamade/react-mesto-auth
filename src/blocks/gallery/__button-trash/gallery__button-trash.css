@@ -1,0 +1,11 @@
+.gallery__button-trash {
+  position: absolute;
+  width: 18px;
+  height: 19px;
+  background: url('../../../images/icon-trash.svg') no-repeat;
+  border: none;
+  top: 20px;
+  right: 20px;
+  filter: drop-shadow(0px 0px 1px var(--color-main));
+  z-index: 1;
+}

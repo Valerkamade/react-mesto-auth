@@ -1,0 +1,17 @@
+.profile__button-add {
+  display: block;
+  order: 2;
+  max-width: 282px;
+  width: 100%;
+  height: 50px;
+  border: 2px solid var(--color-second);
+  border-radius: 2px;
+  background: url('../../../images/icon-add.svg') center / 16px 16px no-repeat;
+}
+
+@media (min-width: 880px) {
+  .profile__button-add {
+    max-width: 150px;
+    background-size: 22px 22px;
+  }
+}

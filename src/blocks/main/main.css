@@ -1,0 +1,5 @@
+.main {
+  width: calc(100% - 2 * 19px);
+  margin: 0 auto;
+  flex: auto;
+}

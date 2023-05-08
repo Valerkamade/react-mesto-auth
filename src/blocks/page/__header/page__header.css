@@ -1,0 +1,10 @@
+.page__header {
+  
+  margin: 0 auto 42px;
+}
+
+@media (min-width: 880px) {
+  .page__header {
+    margin-bottom: 40px;
+  }
+}

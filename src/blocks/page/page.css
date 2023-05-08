@@ -1,0 +1,14 @@
+.page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-main);
+  color: var(--color-second);
+
+  display: flex;
+  flex-direction: column;
+
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}

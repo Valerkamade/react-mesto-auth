@@ -1,0 +1,11 @@
+.gallery__button-like {
+  width: 22px;
+  height: 19px;
+  background: url('../../../images/icon-heart.svg') no-repeat;
+  border: none;
+  flex-shrink: 0;
+}
+
+.gallery__button-like:hover {
+  opacity: 0.5;
+}

@@ -1,0 +1,9 @@
+.page__profile {
+  margin: 0 auto 36px;
+}
+
+@media (min-width: 880px) {
+  .page__profile {
+    margin-bottom: 50px;
+  }
+}

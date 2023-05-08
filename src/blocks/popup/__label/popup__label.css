@@ -1,0 +1,14 @@
+.popup__label {
+  display: block;
+  position: relative;
+}
+
+.popup__label:last-of-type {
+  margin-bottom: 15px;
+}
+
+@media (min-width: 880px) {
+  .popup__label:last-of-type {
+    margin-bottom: 18px;
+  }
+}

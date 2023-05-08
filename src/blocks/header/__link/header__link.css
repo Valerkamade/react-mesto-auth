@@ -1,0 +1,4 @@
+.header__link {
+  text-decoration: none;
+  color: var(--color-second);
+}

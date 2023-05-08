@@ -1,0 +1,15 @@
+.profile__wrapper {
+  width: 100%;
+  order: 1;
+  margin-bottom: 33px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (min-width: 880px) {
+  .profile__wrapper {
+    margin-bottom: 0;
+  }
+}
