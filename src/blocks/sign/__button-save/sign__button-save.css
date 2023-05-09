@@ -1,11 +1,32 @@
 .sign__button-save {
-  padding: 14px 0;
-  background-color: var(--color-second);
+  padding: 14px 0 13px;
+  margin-top: 143px;
+
+  font-size: 16px;
+  line-height: 19px;
   color: var(--color-main);
 
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background-color: var(--color-second);
+}
 
-  margin-top: 186px;
+.sign__button-save:hover {
+  opacity: 0.85;
+}
+
+.sign__button-save :disabled {
+  opacity: 0.2;
+  border: 1px solid var(--color-main);
+  background-color: transparent;
+  color: var(--color-main);
+}
+
+@media (min-width: 880px) {
+  .sign__button-save {
+    font-size: 18px;
+    line-height: 22px;
+    padding: 14px 0;
+    margin-top: 186px;
+  }
 }

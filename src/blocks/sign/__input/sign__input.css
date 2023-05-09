@@ -1,15 +1,20 @@
 .sign__input {
+  /* display: block; */
   width: 100%;
   background-color: transparent;
   border: none;
   border-bottom: 2px solid var(--color-placeholder-sing);
-  padding: 0 0 10px;
+  padding: 0 0 8px;
   color: var(--color-second);
   font-weight: 500;
-  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 17px;
+  /* box-sizing: border-box; */
 }
 
 .sign__input::placeholder {
+  /* box-sizing: border-box; */
+  padding: 0;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;

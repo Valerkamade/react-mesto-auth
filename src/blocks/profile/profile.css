@@ -4,11 +4,14 @@
   align-items: center;
 
   max-width: 880px;
+  padding: 42px 0 36px;
 }
 
 @media (min-width: 880px) {
   .profile {
     flex-direction: row;
     gap: 30px;
+    padding-top: 40px;
+    padding-bottom: 50px;
   }
 }

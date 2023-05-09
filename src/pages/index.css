@@ -2,25 +2,27 @@
 @import url(../vendor/inter.css);
 @import url(../vendor/variables.css);
 
-/* Импорт page */
-@import url(../blocks/page/page.css);
-@import url(../blocks/page/__header/page__header.css);
-@import url(../blocks/page/__profile/page__profile.css);
-@import url(../blocks/page/__gallery/page__gallery.css);
-
-/* Импорт header */
-@import url(../blocks/header/header.css);
-@import url(../blocks/header/__logo/header__logo.css);
-@import url(../blocks/header/__login/header__login.css);
-@import url(../blocks/header/__wrapper/header__wrapper.css);
-@import url(../blocks/header/__text/header__text.css);
-@import url(../blocks/header/__link/header__link.css);
-
 /* Импорт main */
 @import url(../blocks/main/main.css);
 
 /* Импорт кнопок */
 @import url(../blocks/button/button.css);
+
+/* Импорт page */
+@import url(../blocks/page/page.css);
+@import url(../blocks/page/__container/page__container.css);
+
+/* Импорт header */
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/_active/header_active.css);
+@import url(../blocks/header/__logo/header__logo.css);
+@import url(../blocks/header/__wrapper/header__wrapper.css);
+@import url(../blocks/header/__text/header__text.css);
+@import url(../blocks/header/__link/header__link.css);
+@import url(../blocks/header/__button-logout/header__button-logout.css);
+@import url(../blocks/header/__button-toggle/header__button-toggle.css);
+@import url(../blocks/header/__button-lines/header__button-lines.css);
+@import url(../blocks/header/__button-toggle/_active/header__button-toggle_active.css);
 
 /* Импорт profile */
 @import url(../blocks/profile/profile.css);
@@ -50,8 +52,10 @@
 /* Импорт popup */
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__container/_type/popup__container_type_info.css);
 @import url(../blocks/popup/__heading/popup__heading.css);
-@import url(../blocks/popup/__heading/_type_delete/popup__heading_type_delete.css);
+@import url(../blocks/popup/__heading/_type/popup__heading_type_confirmation.css);
+@import url(../blocks/popup/__heading/_type/popup__heading_type_info.css);
 @import url(../blocks/popup/__label/popup__label.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__error/popup__error.css);

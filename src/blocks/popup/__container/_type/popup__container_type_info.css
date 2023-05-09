@@ -1,0 +1,15 @@
+.popup__container_type_info {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  padding: 50px 18px;
+}
+
+@media (min-width: 880px) {
+  .popup__container_type_info {
+    gap: 32px;
+    align-items: center;
+    padding: 60px 36px;
+  }
+}

@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PopupWithForm from './PopupWithForm';
+import Input from './Input';
+import { popupCard } from '../utils/popup-list';
 
 export default function AddPlacePopup({
   isOpen,
@@ -7,57 +9,42 @@ export default function AddPlacePopup({
   onAddPlace,
   isLoading,
   onMouseDown,
+  value,
+  setValue,
 }) {
-  const [values, setValues] = useState({});
-
+  // const { name, title, buttonTextDefault, buttonTextLoading, inputs } =
+  //   popupCard;
+// console.log(popupProfile)
   function handleChange(evt) {
-    setValues({ ...values, [evt.target.name]: evt.target.value });
+    setValue({ ...value, [evt.target.name]: evt.target.value });
   }
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onAddPlace(values);
-
-    setValues({ [evt.target.name]: '' });
+    onAddPlace(value);
   }
+
 
   return (
     <PopupWithForm
-      name='place'
-      title='Новое место'
-      buttonText={isLoading ? 'Создание...' : 'Создать'}
+      isLoading={isLoading}
+      options={popupCard}
+      // name={name}
+      // title={title}
+      // buttonText={isLoading ? buttonTextLoading : buttonTextDefault}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
       onMouseDown={onMouseDown}
     >
-      <label className='popup__label'>
-        <input
-          className='popup__input popup__input_type_title'
-          type='text'
-          name='name'
-          placeholder='Название'
-          minLength='2'
-          maxLength='30'
-          required
-          value={values.name ?? ''}
-          onChange={handleChange}
+      {popupCard.inputs.map((input) => (
+        <Input
+          key={input.name}
+          value={value[`${input.name}`]}
+          input={input}
+          handleChange={handleChange}
         />
-        <span className='popup__error name-error'></span>
-      </label>
-
-      <label className='popup__label'>
-        <input
-          className='popup__input popup__input_type_link'
-          type='url'
-          name='link'
-          placeholder='Ссылка на картинку'
-          required
-          value={values.link ?? ''}
-          onChange={handleChange}
-        />
-        <span className='popup__error link-error'></span>
-      </label>
+      ))}
     </PopupWithForm>
   );
 }

@@ -1,0 +1,13 @@
+.header__button-toggle {
+  position: relative;
+  display: flex;
+  align-self: flex-end;
+  width: 24px;
+  height: 21px;
+  order: 3;
+}
+@media (min-width: 880px) {
+  .header__button-toggle {
+    display: none;
+  }
+}

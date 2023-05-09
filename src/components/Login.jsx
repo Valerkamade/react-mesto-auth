@@ -71,13 +71,13 @@ export default function Login(
             required
             value={value.password ?? ''}
             onChange={handleChange}
+            autoComplete="off"
           />
           <span className='sign__error password-error'></span>
         </label>
         <button
           className='sign__button-save button'
           type='submit'
-          // disabled={!isValidForm}
         >
           Войти
         </button>

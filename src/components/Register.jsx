@@ -3,7 +3,15 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import * as auth from '../utils/auth';
 
-export default function Register(name, title, children, buttonText, onSubmit) {
+export default function Register({
+  name,
+  title,
+  children,
+  buttonText,
+  onSubmit,
+  handlePositive,
+  handleNegative,
+}) {
   const [value, setValue] = useState({});
   const navigate = useNavigate();
 
@@ -13,12 +21,18 @@ export default function Register(name, title, children, buttonText, onSubmit) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    if (value.password) {
-      auth.register(value).then(() => {
-        navigate('/sigh-in', { replace: true });
-      });
+    if (value.password || value.email) {
+      auth
+        .register(value)
+        .then((res) => {
+          handlePositive();
+          navigate('/sign-in', { replace: true });
+          setValue({ [evt.target.name]: '' });
+        })
+        .catch((err) => {
+          return err.then((res) => handleNegative(res));
+        });
     }
-    setValue({ [evt.target.name]: '' });
   }
 
   return (
@@ -57,6 +71,7 @@ export default function Register(name, title, children, buttonText, onSubmit) {
             required
             value={value.password ?? ''}
             onChange={handleChange}
+            autoComplete="off"
           />
           <span className='sign__error password-error'></span>
         </label>

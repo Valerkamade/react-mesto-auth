@@ -1,0 +1,26 @@
+.header__button-lines,
+.header__button-lines::before,
+.header__button-lines::after {
+  position: absolute;
+  width: 24px;
+  height: 3px;
+  top: 50%;
+  left: 50%;
+  background-color: var(--color-second);
+  transform: translate(-50%, -50%);
+  transition: all 0.5s;
+}
+
+.header__button-lines::before,
+.header__button-lines::after {
+  content: "";
+}
+
+.header__button-lines::before {
+  top: -7px
+}
+
+.header__button-lines::after {
+  top: 11px;
+}
+

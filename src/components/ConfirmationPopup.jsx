@@ -1,6 +1,6 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
-
+import { popupConfirmation } from '../utils/popup-list';
 
 export default function ConfirmationPopup({
   isOpen,
@@ -9,17 +9,15 @@ export default function ConfirmationPopup({
   isLoading,
   onMouseDown,
 }) {
-
   function handleSubmit(evt) {
     evt.preventDefault();
-
     onConfirm();
   }
 
   return (
     <PopupWithForm
-      title='Вы уверены?'
-      buttonText={isLoading ? 'Удаление...' : 'Да'}
+      isLoading={isLoading}
+      options={popupConfirmation}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}

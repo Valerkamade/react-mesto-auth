@@ -1,5 +1,6 @@
 .header__logo {
   width: 104px;
+  display: block;
 }
 
 @media (min-width: 880px) {

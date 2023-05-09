@@ -1,74 +1,29 @@
-// import React from 'react';
-import React, { useRef, useEffect, useState } from 'react';
+// import React, { useRef, useEffect, useState } from 'react';
+import React from 'react';
+import Popup from './Popup';
+import Form from './Form';
 
 export default function PopupWithForm({
-  name,
-  title,
+  isLoading,
+  options,
   children,
   isOpen,
   onClose,
-  buttonText,
   onSubmit,
-  isValidity,
-  onMouseDown,
 }) {
-  const className = `popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`;
-  const [isValidForm, setIsValidForm] = useState(false);
-  const formRef = useRef(0);
-
-  useEffect(() => {
-    Array.from(formRef.current)
-      .filter((item) => {
-        return item.localName !== 'button';
-      })
-      .forEach((item) => {
-        item.classList.toggle('popup__input_type_error', item.validationMessage);
-        (item.nextSibling.textContent = item.validationMessage);
-      });
-
-    function validation() {
-      if (children === undefined) {
-        return true;
-      }
-      if (formRef.current.name.avatar) {
-        isValidity();
-      }
-      return formRef.current.checkValidity();
-    }
-
-    isOpen && setIsValidForm(validation());
-  }, [children, isOpen, isValidity]);
-
+  const { name, title, buttonTextDefault, buttonTextLoading } = options ?? '';
 
   return (
-    <div className={className} onMouseDown={onMouseDown}>
-      <div className='popup__container'>
-        <h2 className='popup__heading'>{title}</h2>
-        <form
-          className={`popup__form popup__form_type_${name}`}
-          method='post'
-          name={name}
-          autoComplete='off'
-          noValidate
-          onSubmit={onSubmit}
-          ref={formRef}
-        >
-          {children}
-          <button
-            className='popup__button-save button'
-            type='submit'
-            disabled={!isValidForm}
-          >
-            {buttonText}
-          </button>
-        </form>
-        <button
-          className='popup__button-close button'
-          type='button'
-          aria-label='Закрыть'
-          onClick={onClose}
-        />
-      </div>
-    </div>
+    <Popup isOpen={isOpen} onClose={onClose} name={name}>
+      <h2 className={`popup__heading popup__heading_type_${name}`}>{title}</h2>
+      <Form
+        isOpen={isOpen}
+        name={name}
+        buttonText={isLoading ? buttonTextLoading : buttonTextDefault}
+        onSubmit={onSubmit}
+      >
+        {children ?? ''}
+      </Form>
+    </Popup>
   );
 }

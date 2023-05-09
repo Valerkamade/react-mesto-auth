@@ -3,3 +3,9 @@
   margin: 0 auto;
   flex: auto;
 }
+
+@media (min-width: 880px) {
+  .main {
+    width: 100%;
+  }
+}

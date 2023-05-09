@@ -1,0 +1,15 @@
+.popup__heading_type_info {
+  text-align: center;
+  margin: 0;
+  width: 244px;
+  min-height: 48px;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+@media (min-width: 880px) {
+  .popup__heading_type_info {
+    width: 358px;
+    min-height: 58px;
+  }
+}

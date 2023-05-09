@@ -2,6 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 358px;
+  max-width: 260px;
   margin: auto;
+}
+
+@media (min-width: 880px) {
+  .sign {
+    max-width: 358px;
+      }
 }

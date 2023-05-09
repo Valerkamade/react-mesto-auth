@@ -16,7 +16,7 @@ export default function Main({
 
   return (
     <main className='main'>
-      <section className='profile page__profile'>
+      <section className='profile page__container'>
         <div className='profile__wrapper'>
           <div className='profile__name-edit'>
             <h1 className='profile__name'>{currentUser.name}</h1>
@@ -44,7 +44,7 @@ export default function Main({
         ></button>
       </section>
 
-      <section className='gallery page__gallery' aria-label='Галерея'>
+      <section className='gallery page__container' aria-label='Галерея'>
         <ul className='gallery__list'>
           {cards.map((card) => (
             <Card

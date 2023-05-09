@@ -5,5 +5,5 @@
   color: var(--color-error);
   transition: 0.5s;
   min-height: 30px;
-  padding: 5px 0 0;
+  padding: 0;
 }

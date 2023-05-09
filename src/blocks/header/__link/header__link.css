@@ -1,4 +1,13 @@
 .header__link {
+  display: block;
   text-decoration: none;
   color: var(--color-second);
+  order: 1;
 }
+
+@media (min-width: 880px) {
+  .header__link {
+    order: 0;
+  }
+}
+
