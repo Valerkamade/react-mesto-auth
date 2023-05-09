@@ -1,9 +1,0 @@
-.page__gallery {
-  margin: 0 auto 50px;
-}
-
-@media (min-width: 880px) {
-  .page__gallery {
-    margin-bottom: 68px;
-  }
-}
