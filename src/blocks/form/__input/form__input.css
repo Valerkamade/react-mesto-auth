@@ -1,0 +1,29 @@
+.form__input {
+  box-sizing: border-box;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  border: none;
+  padding: 0 0 10px;
+  border-bottom: 1px solid var(--color-main-20);
+  width: 100%;
+  opacity: 1;
+}
+
+.form__input:active,
+.form__input:focus {
+  outline-color: var(--color-main-20);
+}
+
+.form:not([novalidate]) .form__input:invalid {
+  border-color: var(--color-error);
+}
+
+.form__input::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 0;
+  color: var(--color-placeholder);
+  opacity: 1;
+}

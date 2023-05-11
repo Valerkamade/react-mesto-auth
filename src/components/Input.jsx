@@ -4,9 +4,11 @@ export default function Input({ value, handleChange, input }) {
   const { name, type, placeholder, minLength, maxLength } = input;
 
   return (
-    <label className='popup__label'>
+    <label className='form__label'>
       <input
-        className={`popup__input popup__input_type_${name}`}
+        className={`form__input${
+          name === 'register' || name === 'login' ? ' form__input_type_auth' : ''
+        }`}
         type={type}
         name={name}
         placeholder={placeholder}
@@ -15,9 +17,9 @@ export default function Input({ value, handleChange, input }) {
         required
         value={value ?? ''}
         onChange={handleChange}
-        autoComplete="off"
+        autoComplete='off'
       />
-      <span className={`popup__error ${name}-error`} />
+      <span className={`form__error ${name}-error`} />
     </label>
   );
 }

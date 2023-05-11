@@ -1,6 +1,6 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
-import { popupConfirmation } from '../utils/popup-list';
+import { popupConfirmation } from '../utils/data-list';
 
 export default function ConfirmationPopup({
   isOpen,

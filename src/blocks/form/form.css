@@ -1,4 +1,4 @@
-.sign__form {
+.form {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -6,7 +6,7 @@
 }
 
 @media (min-width: 880px) {
-  .sign__form {
+  .form {
     margin-bottom: 15px;
   }
 }

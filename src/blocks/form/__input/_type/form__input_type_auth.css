@@ -1,0 +1,11 @@
+.form__input_type_auth {
+  background-color: transparent;
+  border-bottom: 2px solid var(--color-placeholder-sing);
+  padding: 0 0 8px;
+  color: var(--color-second);
+  font-weight: 500;
+}
+
+.form__input_type_auth::placeholder {
+  color: var(--color-placeholder-sing);
+}

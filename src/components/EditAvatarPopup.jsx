@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PopupWithForm from './PopupWithForm';
 import Input from './Input';
-import { popupAvatar } from '../utils/popup-list';
+import { popupAvatar } from '../utils/data-list';
 
 export default function EditAvatarPopup({
   isOpen,
@@ -12,8 +12,6 @@ export default function EditAvatarPopup({
   value,
   setValue,
 }) {
-  // const { inputs } = popupAvatar;
-
   useEffect(() => {
     isOpen && setValue({});
   }, [isOpen, setValue]);
@@ -30,9 +28,6 @@ export default function EditAvatarPopup({
   return (
     <PopupWithForm
       isLoading={isLoading}
-      // name={name}
-      // title={title}
-      // buttonText={isLoading ? buttonTextLoading : buttonTextDefault}
       options={popupAvatar}
       isOpen={isOpen}
       onClose={onClose}

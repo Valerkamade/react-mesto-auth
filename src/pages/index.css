@@ -51,32 +51,32 @@
 
 /* Импорт popup */
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_type/popup_type_img.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__container/_type/popup__container_type_info.css);
+@import url(../blocks/popup/__container/_type/popup__container_type_img.css);
 @import url(../blocks/popup/__heading/popup__heading.css);
 @import url(../blocks/popup/__heading/_type/popup__heading_type_confirmation.css);
 @import url(../blocks/popup/__heading/_type/popup__heading_type_info.css);
-@import url(../blocks/popup/__label/popup__label.css);
-@import url(../blocks/popup/__input/popup__input.css);
-@import url(../blocks/popup/__error/popup__error.css);
-@import url(../blocks/popup/__error/_visible/popup__error_visible.css);
-@import url(../blocks/popup/__input/_type/popup__input_type_error.css);
 @import url(../blocks/popup/__button-close/popup__button-close.css);
-@import url(../blocks/popup/__button-save/popup__button-save.css);
-@import url(../blocks/popup/__button-save/_disabled/popup__button-save_disabled.css);
-@import url(../blocks/popup/_opened/popup_opened.css);
-@import url(../blocks/popup/__container/_type/popup__container_type_img.css);
 @import url(../blocks/popup/__title/popup__title.css);
-@import url(../blocks/popup/_type/popup_type_img.css);
 @import url(../blocks/popup/__photo/popup__photo.css);
 
-/* Импорт sign */
-@import url(../blocks/sign/sign.css);
-@import url(../blocks/sign/__title/sign__title.css);
-@import url(../blocks/sign/__form/sign__form.css);
-@import url(../blocks/sign/__input/sign__input.css);
-@import url(../blocks/sign/__error/sign__error.css);
-@import url(../blocks/sign/__button-save/sign__button-save.css);
-@import url(../blocks/sign/__wrapper/sign__wrapper.css);
-@import url(../blocks/sign/__text/sign__text.css);
-@import url(../blocks/sign/__link/sign__link.css);
+/* Импортform */
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__input/_type/form__input_type_error.css);
+@import url(../blocks/form/__input/_type/form__input_type_auth.css);
+@import url(../blocks/form/__label/form__label.css);
+@import url(../blocks/form/__error/form__error.css);
+@import url(../blocks/form/__error/_visible/form__error_visible.css);
+@import url(../blocks/form/__button-save/form__button-save.css);
+@import url(../blocks/form/__button-save/_type/form__button-save_type_auth.css);
+
+/* Импорт auth */
+@import url(../blocks/auth/auth.css);
+@import url(../blocks/auth/__link/auth__link.css);
+@import url(../blocks/auth/__text/auth__text.css);
+@import url(../blocks/auth/__title/auth__title.css);
+@import url(../blocks/auth/__wrapper/auth__wrapper.css);

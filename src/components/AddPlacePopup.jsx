@@ -1,7 +1,7 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 import Input from './Input';
-import { popupCard } from '../utils/popup-list';
+import { popupCard } from '../utils/data-list';
 
 export default function AddPlacePopup({
   isOpen,
@@ -12,9 +12,6 @@ export default function AddPlacePopup({
   value,
   setValue,
 }) {
-  // const { name, title, buttonTextDefault, buttonTextLoading, inputs } =
-  //   popupCard;
-// console.log(popupProfile)
   function handleChange(evt) {
     setValue({ ...value, [evt.target.name]: evt.target.value });
   }
@@ -24,14 +21,10 @@ export default function AddPlacePopup({
     onAddPlace(value);
   }
 
-
   return (
     <PopupWithForm
       isLoading={isLoading}
       options={popupCard}
-      // name={name}
-      // title={title}
-      // buttonText={isLoading ? buttonTextLoading : buttonTextDefault}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}

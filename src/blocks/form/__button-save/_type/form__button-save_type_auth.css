@@ -1,4 +1,4 @@
-.sign__button-save {
+.form__button-save_type_auth {
   padding: 14px 0 13px;
   margin-top: 143px;
 
@@ -6,24 +6,24 @@
   line-height: 19px;
   color: var(--color-main);
 
-  box-sizing: border-box;
+  border: none;
   border-radius: 2px;
   background-color: var(--color-second);
 }
 
-.sign__button-save:hover {
+.form__button-save_type_auth:not([disabled]):hover {
   opacity: 0.85;
 }
 
-.sign__button-save :disabled {
-  opacity: 0.2;
-  border: 1px solid var(--color-main);
-  background-color: transparent;
+.form__button-save_type_auth:disabled {
+  border: none;
+  background-color: var(--color-second);
   color: var(--color-main);
+  cursor: default;
 }
 
 @media (min-width: 880px) {
-  .sign__button-save {
+  .form__button-save_type_auth {
     font-size: 18px;
     line-height: 22px;
     padding: 14px 0;

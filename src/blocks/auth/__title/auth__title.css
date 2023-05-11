@@ -1,4 +1,4 @@
-.sign__title {
+.auth__title {
   width: 100%;
   margin: 40px 0;
   font-weight: 900;
@@ -8,7 +8,7 @@
 }
 
 @media (min-width: 880px) {
-  .sign__title {
+  .auth__title {
     margin: 60px 0 50px;
     font-size: 24px;
     line-height: 29px;

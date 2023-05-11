@@ -1,6 +1,6 @@
 import React from 'react';
 import Popup from './Popup';
-import { popupImage } from '../utils/popup-list';
+import { popupImage } from '../utils/data-list';
 
 export default function ImagePopup({ card, isOpen, onClose }) {
   const { name } = popupImage;

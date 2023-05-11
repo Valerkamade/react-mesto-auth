@@ -1,8 +1,8 @@
-.sign__link {
+.auth__link {
   text-decoration: none;
   color: var(--color-second);
 }
 
-.sign__link:hover {
+.auth__link:hover {
   opacity: 0.6;
 }

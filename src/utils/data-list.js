@@ -1,4 +1,5 @@
 // import iconPositive from '../images/icon-positive.svg'
+// import iconNegative from '../images/icon-negative.svg'
 
 const popupProfile = {
   name: 'profile',
@@ -56,24 +57,79 @@ const popupAvatar = {
       placeholder: 'Ссылка на аватар',
     },
   ]
-}
+};
 
 const popupConfirmation = {
   name: 'confirmation',
   title: 'Вы уверены?',
   buttonTextDefault: 'Да',
   buttonTextLoading: 'Удаление...',
-}
+};
 
 const popupInfo = {
   name: 'info',
   title: 'Вы успешно зарегистрировались!',
   // iconPositive: iconPositive,
-}
+  // iconNegative: iconNegative,
+};
 
 const popupImage = {
   name: 'img',
-  // iconPositive: iconPositive,
-}
+};
 
-export { popupProfile, popupCard, popupAvatar, popupConfirmation, popupInfo, popupImage };
+const formRegister = {
+  name: 'register',
+  title: 'Регистрация',
+  buttonTextDefault: 'Зарегистрироваться',
+  buttonTextLoading: 'Регистрация...',
+  inputs: [
+    {
+      type: 'email',
+      name: 'email',
+      placeholder: 'Email',
+      minLength: '5',
+      maxLength: '40',
+    },
+    {
+      type: 'password',
+      name: 'password',
+      placeholder: 'Пароль',
+      minLength: '4',
+      maxLength: '40',
+    },
+  ]
+};
+
+const formLogin = {
+  name: 'login',
+  title: 'Вход',
+  buttonTextDefault: 'Войти',
+  buttonTextLoading: 'Вход...',
+  inputs: [
+    {
+      type: 'email',
+      name: 'email',
+      placeholder: 'Email',
+      minLength: '4',
+      maxLength: '40',
+    },
+    {
+      type: 'password',
+      name: 'password',
+      placeholder: 'Пароль',
+      minLength: '4',
+      maxLength: '40',
+    },
+  ]
+};
+
+export {
+  popupProfile,
+  popupCard,
+  popupAvatar,
+  popupConfirmation,
+  popupInfo,
+  popupImage,
+  formRegister,
+  formLogin
+};

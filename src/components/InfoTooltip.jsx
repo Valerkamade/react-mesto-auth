@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactComponent as IconPositive } from '../images/icon-positive.svg';
 import { ReactComponent as IconNegative } from '../images/icon-negative.svg';
 import Popup from './Popup';
-import { popupInfo } from '../utils/popup-list';
+import { popupInfo } from '../utils/data-list';
 
 export default function InfoTooltip({ onClose, isOpen, errorMessage }) {
   const { name, title } = popupInfo;

@@ -31,7 +31,7 @@ export default function Header({ loggedIn, email, setLoggedIn,  }) {
         </Link>
       ) : (
         <>
-          <div className={`header__wrapper`}>
+          <div className='header__wrapper'>
             <span className='header__text'>{email}</span>
             <button className='header__button-logout button' onClick={signOut}>
               Выйти

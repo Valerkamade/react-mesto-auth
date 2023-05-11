@@ -10,10 +10,7 @@ export default function Form({ children, name, onSubmit, isOpen, buttonText }) {
         return item.localName !== 'button';
       })
       .forEach((item) => {
-        item.classList.toggle(
-          'popup__input_type_error',
-          item.validationMessage
-        );
+        item.classList.toggle('form__input_type_error', item.validationMessage);
         item.nextSibling.textContent = item.validationMessage;
       });
 
@@ -29,7 +26,7 @@ export default function Form({ children, name, onSubmit, isOpen, buttonText }) {
 
   return (
     <form
-      className={`popup__form popup__form_type_${name}`}
+      className={`form form_type_${name}`}
       name={name}
       noValidate
       onSubmit={onSubmit}
@@ -37,7 +34,11 @@ export default function Form({ children, name, onSubmit, isOpen, buttonText }) {
     >
       {children}
       <button
-        className='popup__button-save button'
+        className={`form__button-save button${
+          name === 'register' || name === 'login'
+            ? ' form__button-save_type_auth'
+            : ''
+        }`}
         type='submit'
         disabled={!isValidForm}
       >

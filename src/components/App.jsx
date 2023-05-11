@@ -25,7 +25,6 @@ function App() {
   const [isConfirmationPopupOpen, setIsConfirmationPopupOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
-  // const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const [selectedCard, setSelectedCard] = useState({});
@@ -37,16 +36,43 @@ function App() {
   const [valueProfile, setValueProfile] = useState({});
   const [valueCard, setValueCard] = useState({});
   const [valueAvatar, setValueAvatar] = useState({});
+  const [valueRegister, setValueRegister] = useState({});
+  const [valueLogin, setValueLogin] = useState({});
 
   const navigate = useNavigate();
 
-  // const handlerEsc = (evt) => {
-  //   evt.key === 'Escape' && closeAllPopups();
-  // };
+  function handleRegister() {
+    if (valueRegister.password || valueRegister.email) {
+      auth
+        .register(valueRegister)
+        .then((res) => {
+          handleInfoTooltipPositive();
+          navigate('/sign-in', { replace: true });
+          setValueRegister({});
+        })
+        .catch((err) => {
+          return err.then((res) => handleInfoTooltipNegative(res));
+        });
+    }
+  }
 
-  // const handleOverlayClose = (evt) => {
-  //   evt.target === evt.currentTarget && closeAllPopups();
-  // };
+  function handleLogin() {
+    if (!valueLogin.email || !valueLogin.password) {
+      return;
+    }
+    auth
+      .authorize(valueLogin)
+      .then((data) => {
+        if (data.token) {
+          setValueLogin({ valueLogin });
+          navigate('/', { replace: true });
+          setLoggedIn(true);
+        }
+      })
+      .catch((err) => {
+        return err.then((res) => handleInfoTooltipNegative(res));
+      });
+  }
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -54,28 +80,50 @@ function App() {
       auth
         .checkToken(jwt)
         .then((res) => {
-          Promise.all([api.getUserInfoApi(), api.getInitialCardsApi()])
-            .then(([user, card]) => {
-              setCurrentUser(user);
-              setCards(card);
-            })
-            .catch((err) => console.log(err));
           if (res) {
             setLoggedIn(true);
             navigate('/', { replace: true });
             setEmailUser(res.data.email);
           }
         })
-        .catch();
+        .catch((err) => console.log(err));
     }
   }, [navigate]);
 
+  useEffect(() => {
+    if (loggedIn) {
+      Promise.all([api.getUserInfoApi(), api.getInitialCardsApi()])
+        .then(([user, card]) => {
+          setCurrentUser(user);
+          setCards(card);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [loggedIn]);
+
   // useEffect(() => {
-  //   document.addEventListener('keydown', handlerEsc);
-  //   return () => {
-  //     document.removeEventListener('keydown', handlerEsc);
-  //   };
-  // }, []);
+  //   if (loggedIn) {
+  //     const jwt = localStorage.getItem('jwt');
+  //     if (jwt) {
+  //       auth
+  //         .checkToken(jwt)
+  //         .then((res) => {
+  //           Promise.all([api.getUserInfoApi(), api.getInitialCardsApi()])
+  //             .then(([user, card]) => {
+  //               setCurrentUser(user);
+  //               setCards(card);
+  //             })
+  //             .catch((err) => console.log(err));
+  //           if (res) {
+  //             setLoggedIn(true);
+  //             navigate('/', { replace: true });
+  //             setEmailUser(res.data.email);
+  //           }
+  //         })
+  //         .catch();
+  //     }
+  //   }
+  // }, [loggedIn, navigate]);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -93,11 +141,11 @@ function App() {
     setIsConfirmationPopupOpen(true);
   }
 
-  function handleInfoTooltipPositiveOpen() {
+  function handleInfoTooltipPositive() {
     setIsInfoTooltipPopupOpen(true);
   }
 
-  function handleInfoTooltipNegativeOpen({ error, message }) {
+  function handleInfoTooltipNegative({ error, message }) {
     setIsInfoTooltipPopupOpen(true);
     setErrorMessage(message || error);
   }
@@ -194,45 +242,61 @@ function App() {
     setSelectedCard(card);
   }
 
-  function handleLogin() {
-    setLoggedIn(true);
-  }
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Header email={emailUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
 
       <Routes>
-        <Route path='/' element=''>
-          <Route
-            index
-            element={
-              <ProtectedRouteElement
-                element={Main}
-                onEditProfile={handleEditProfileClick}
-                onAddPlace={handleAddPlaceClick}
-                onEditAvatar={handleEditAvatarClick}
-                onCardClick={handleCardClick}
-                onCardLike={handleCardLike}
-                onCardDelete={handle}
-                cards={cards}
-                loggedIn={loggedIn}
-                isLoading={isLoading}
-              />
-            }
-          />
-          <Route
-            path='sign-up'
-            element={
-              <Register
-                name='registration'
-                handlePositive={handleInfoTooltipPositiveOpen}
-                handleNegative={handleInfoTooltipNegativeOpen}
-              />
-            }
-          />
-          <Route path='sign-in' element={<Login handleLogin={handleLogin} />} />
-        </Route>
+        {/* <Route
+          path='/'
+          element={
+            loggedIn ? (
+              <Navigate to='/' replace />
+            ) : (
+              <Navigate to='/sign-up' replace />
+            )
+          }
+        /> */}
+        <Route
+          index
+          element={
+            <ProtectedRouteElement
+              element={Main}
+              onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick}
+              onEditAvatar={handleEditAvatarClick}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike}
+              onCardDelete={handle}
+              cards={cards}
+              loggedIn={loggedIn}
+              isLoading={isLoading}
+            />
+          }
+        />
+        <Route
+          path='/sign-up'
+          element={
+            <Register
+              name='registration'
+              onRegister={handleRegister}
+              value={valueRegister}
+              setValue={setValueRegister}
+              isLoading={isLoading}
+            />
+          }
+        />
+        <Route
+          path='/sign-in'
+          element={
+            <Login
+              onLogin={handleLogin}
+              value={valueLogin}
+              setValue={setValueLogin}
+              isLoading={isLoading}
+            />
+          }
+        />
         <Route path='*' element={<Error />} />
       </Routes>
 
@@ -249,44 +313,54 @@ function App() {
         />
       )}
 
-      <EditAvatarPopup
-        isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}
-        onUpdateAvatar={handleUpdateAvatar}
-        isLoading={isLoading}
-        value={valueAvatar}
-        setValue={setValueAvatar}
-      />
+      {loggedIn && (
+        <EditAvatarPopup
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
+          isLoading={isLoading}
+          value={valueAvatar}
+          setValue={setValueAvatar}
+        />
+      )}
 
-      <AddPlacePopup
-        isOpen={isAddPlacePopupOpen}
-        onClose={closeAllPopups}
-        onAddPlace={handleAddPlaceSubmit}
-        isLoading={isLoading}
-        value={valueCard}
-        setValue={setValueCard}
-      />
+      {loggedIn && (
+        <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          onAddPlace={handleAddPlaceSubmit}
+          isLoading={isLoading}
+          value={valueCard}
+          setValue={setValueCard}
+        />
+      )}
 
-      <ImagePopup
-        card={selectedCard}
-        isOpen={isImagePopupOpen}
-        onClose={closeAllPopups}
-      />
+      {loggedIn && (
+        <ImagePopup
+          card={selectedCard}
+          isOpen={isImagePopupOpen}
+          onClose={closeAllPopups}
+        />
+      )}
 
-      <ConfirmationPopup
-        isOpen={isConfirmationPopupOpen}
-        onClose={closeAllPopups}
-        onConfirm={handleCardDelete}
-        isLoading={isLoading}
-      />
+      {loggedIn && (
+        <ConfirmationPopup
+          isOpen={isConfirmationPopupOpen}
+          onClose={closeAllPopups}
+          onConfirm={handleCardDelete}
+          isLoading={isLoading}
+        />
+      )}
 
-      <InfoTooltip
-        isOpen={isInfoTooltipPopupOpen}
-        onClose={closeAllPopups}
-        onConfirm={handleCardDelete}
-        isLoading={isLoading}
-        errorMessage={errorMessage}
-      />
+      {loggedIn && (
+        <InfoTooltip
+          isOpen={isInfoTooltipPopupOpen}
+          onClose={closeAllPopups}
+          onConfirm={handleCardDelete}
+          isLoading={isLoading}
+          errorMessage={errorMessage}
+        />
+      )}
     </CurrentUserContext.Provider>
   );
 }
