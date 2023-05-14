@@ -6,6 +6,8 @@
   flex-shrink: 0;
 }
 
-.gallery__button-like:hover {
-  opacity: 0.5;
+@media (min-width:880px) {
+  .gallery__button-like:hover {
+    opacity: 0.5;
+  }
 }

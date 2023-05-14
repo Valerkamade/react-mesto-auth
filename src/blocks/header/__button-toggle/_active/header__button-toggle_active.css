@@ -1,7 +1,3 @@
-.header__button-toggle_active {
-  transform: translateX(200px);
-}
-
 .header__button-toggle_active .header__button-lines {
   background-color: transparent;
 }
@@ -14,8 +10,4 @@
 .header__button-toggle_active .header__button-lines::before {
   top: 0;
   transform: translateX(-50%) rotate(45deg);
-}
-
-.header__button-toggle_active {
-  transform: translateX(0px);
 }

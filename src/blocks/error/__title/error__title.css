@@ -1,0 +1,17 @@
+.error__title {
+  margin-top: 100px;
+  /* margin-bottom: 50px; */
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 32px;
+  text-align: center;
+  max-width: 280px;
+}
+
+@media (min-width: 880px) {
+  .error__title {
+    max-width: 400px;
+    font-size: 36px;
+    line-height: 40px;
+  }
+}

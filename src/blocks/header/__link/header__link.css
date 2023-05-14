@@ -3,11 +3,16 @@
   text-decoration: none;
   color: var(--color-second);
   order: 1;
+  transition: opacity 0.5s ease-out;
 }
 
 @media (min-width: 880px) {
   .header__link {
     order: 0;
+  }
+
+  .header__link:hover {
+    opacity: 0.6;
   }
 }
 

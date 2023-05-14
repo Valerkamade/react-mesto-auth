@@ -11,6 +11,7 @@ export default function Login({
 }) {
   const { name, title, buttonTextLoading, buttonTextDefault } = formLogin;
 
+  //TODO: попробовать вынести в отдельный модуль или хук вместе с сабмитом
   function handleChange(evt) {
     setValue({ ...value, [evt.target.name]: evt.target.value });
   }

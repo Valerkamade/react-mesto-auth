@@ -20,7 +20,6 @@ export default function Form({ children, name, onSubmit, isOpen, buttonText }) {
       }
       return formRef.current.checkValidity();
     }
-
     isOpen && setIsValidForm(validation());
   }, [children, isOpen]);
 

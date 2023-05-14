@@ -10,10 +10,12 @@
 
 /* Импорт page */
 @import url(../blocks/page/page.css);
+@import url(../blocks/page/__wrapper/__wrapper.css);
 @import url(../blocks/page/__container/page__container.css);
 
 /* Импорт header */
 @import url(../blocks/header/header.css);
+@import url(../blocks/header/_login/header_login.css);
 @import url(../blocks/header/_active/header_active.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/header/__wrapper/header__wrapper.css);
@@ -80,3 +82,9 @@
 @import url(../blocks/auth/__text/auth__text.css);
 @import url(../blocks/auth/__title/auth__title.css);
 @import url(../blocks/auth/__wrapper/auth__wrapper.css);
+
+/* Импорт error */
+@import url(../blocks/error/error.css);
+@import url(../blocks/error/__title/error__title.css);
+@import url(../blocks/error/__subtitle/error__subtitle.css);
+@import url(../blocks/error/__link/error__link.css);

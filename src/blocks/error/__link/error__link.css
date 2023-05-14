@@ -1,10 +1,12 @@
-.auth__link {
+.error__link {
   text-decoration: none;
+  text-align: center;
   color: var(--color-second);
+  transition: 0.5s opacity ease-out;
 }
 
 @media (min-width:880px) {
-  .auth__link:hover {
+  .error__link:hover {
     opacity: 0.6;
   }
 }

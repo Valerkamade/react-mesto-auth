@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 
 export default function Error() {
   return (
-    <div className='page__container'>
-      <h1 className=''>
-        404.
-        <br />
-        <small>Страница не найдена</small>
-      </h1>
-      <Link to='/'>Go to main page</Link>
+    <div className='error page__container'>
+      <h1 className='error__title'>Ошибка 404</h1>
+      <p className='error__subtitle'>Страница не найдена</p>
+      <Link className='error__link' to='/'>
+        Перейти на главную страницу
+      </Link>
     </div>
   );
 }

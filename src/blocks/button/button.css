@@ -1,19 +1,21 @@
 .button {
   cursor: pointer;
-  transition: 1s opacity ease-out;
+  transition: 0.5s opacity ease-out;
   background-color: transparent;
   box-shadow: none;
   border: none;
   padding: 0;
-  
+
   color: var(--color-second);
 }
 
-.button:hover {
-  opacity: 0.6;
-}
+@media (min-width: 880px) {
+  .button:hover {
+    opacity: 0.6;
+  }
 
-.button:focus,
-.button:active {
-  opacity: 1;
+  .button:focus,
+  .button:active {
+    opacity: 1;
+  }
 }

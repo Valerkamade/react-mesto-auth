@@ -1,9 +1,13 @@
 import React from 'react';
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from 'react-router-dom';
 
-const ProtectedRouteElement = ({ element: Component, ...props  }) => {
-  return (
-    props.loggedIn ? <Component {...props} /> : <Navigate to="/sign-up" replace/>
-)}
+const ProtectedRouteElement = ({ element: Component, ...props }) => {
+  const { pathname } = useLocation();
+  return props.loggedIn ? (
+    <Component {...props} />
+  ) : (
+    <Navigate to='/sign-in' state={{ backUrl: pathname }} replace />
+  );
+};
 
 export default ProtectedRouteElement;

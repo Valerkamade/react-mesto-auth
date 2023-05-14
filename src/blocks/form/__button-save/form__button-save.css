@@ -8,9 +8,6 @@
   box-sizing: border-box;
 }
 
-.form__button-save:not([disabled]):hover {
-  opacity: 0.8;
-}
 
 .form__button-save:disabled {
   opacity: 0.2;
@@ -25,5 +22,9 @@
     font-size: 18px;
     line-height: 22px;
     padding: 14px 0;
+  }
+
+  .form__button-save:not([disabled]):hover {
+    opacity: 0.8;
   }
 }

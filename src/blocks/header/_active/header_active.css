@@ -1,9 +1,3 @@
 .header_active {
-  margin-top: 142px;
+  margin-top: 0;
 }
-
-/* @media (min-width: 880px) {
-  .header_active {
-    margin-top: 0;
-  }
-} */

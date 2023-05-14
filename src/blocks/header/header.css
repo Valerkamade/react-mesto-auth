@@ -1,12 +1,17 @@
 .header {
   display: flex;
   justify-content: space-between;
+  position: relative;
+  gap: 26px;
+  grid-template-columns: repeat(2, 1fr);
+
   max-width: 880px;
   width: 100%;
 
   box-sizing: border-box;
+  border-top: 1px solid var(--color-gray-70);
   border-bottom: 1px solid var(--color-gray-70);
-  padding: 28px 30px 31px;
+  padding: 26px 30px 31px;
 
   flex-shrink: 0;
 
@@ -17,9 +22,10 @@
 
 @media (min-width: 880px) {
   .header {
+    display: flex;
+    justify-content: space-between;
     border-top: none;
     padding: 45px 0 40px 0;
-    margin-top: 0;
 
     align-items: center;
   }

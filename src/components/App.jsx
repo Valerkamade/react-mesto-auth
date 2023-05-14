@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -40,12 +40,13 @@ function App() {
   const [valueLogin, setValueLogin] = useState({});
 
   const navigate = useNavigate();
+  const location = useLocation();
 
-  function handleRegister() {
+  function onRegister() {
     if (valueRegister.password || valueRegister.email) {
       auth
         .register(valueRegister)
-        .then((res) => {
+        .then(() => {
           handleInfoTooltipPositive();
           navigate('/sign-in', { replace: true });
           setValueRegister({});
@@ -64,9 +65,12 @@ function App() {
       .authorize(valueLogin)
       .then((data) => {
         if (data.token) {
-          setValueLogin({ valueLogin });
-          navigate('/', { replace: true });
+          console.log(data);
+          navigate('/');
+          localStorage.setItem('jwt', data.token);
           setLoggedIn(true);
+          setValueLogin({});
+          setEmailUser(valueLogin.email);
         }
       })
       .catch((err) => {
@@ -74,7 +78,7 @@ function App() {
       });
   }
 
-  useEffect(() => {
+  function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
       auth
@@ -82,13 +86,18 @@ function App() {
         .then((res) => {
           if (res) {
             setLoggedIn(true);
-            navigate('/', { replace: true });
+            // const url = location.state?.backUrl || '/';
+            navigate('/');
             setEmailUser(res.data.email);
           }
         })
         .catch((err) => console.log(err));
     }
-  }, [navigate]);
+  }
+
+  useEffect(() => {
+    tokenCheck();
+  }, []);
 
   useEffect(() => {
     if (loggedIn) {
@@ -100,30 +109,6 @@ function App() {
         .catch((err) => console.log(err));
     }
   }, [loggedIn]);
-
-  // useEffect(() => {
-  //   if (loggedIn) {
-  //     const jwt = localStorage.getItem('jwt');
-  //     if (jwt) {
-  //       auth
-  //         .checkToken(jwt)
-  //         .then((res) => {
-  //           Promise.all([api.getUserInfoApi(), api.getInitialCardsApi()])
-  //             .then(([user, card]) => {
-  //               setCurrentUser(user);
-  //               setCards(card);
-  //             })
-  //             .catch((err) => console.log(err));
-  //           if (res) {
-  //             setLoggedIn(true);
-  //             navigate('/', { replace: true });
-  //             setEmailUser(res.data.email);
-  //           }
-  //         })
-  //         .catch();
-  //     }
-  //   }
-  // }, [loggedIn, navigate]);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -247,57 +232,51 @@ function App() {
       <Header email={emailUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
 
       <Routes>
-        {/* <Route
-          path='/'
-          element={
-            loggedIn ? (
-              <Navigate to='/' replace />
-            ) : (
-              <Navigate to='/sign-up' replace />
-            )
-          }
-        /> */}
-        <Route
-          index
-          element={
-            <ProtectedRouteElement
-              element={Main}
-              onEditProfile={handleEditProfileClick}
-              onAddPlace={handleAddPlaceClick}
-              onEditAvatar={handleEditAvatarClick}
-              onCardClick={handleCardClick}
-              onCardLike={handleCardLike}
-              onCardDelete={handle}
-              cards={cards}
-              loggedIn={loggedIn}
-              isLoading={isLoading}
-            />
-          }
-        />
-        <Route
-          path='/sign-up'
-          element={
-            <Register
-              name='registration'
-              onRegister={handleRegister}
-              value={valueRegister}
-              setValue={setValueRegister}
-              isLoading={isLoading}
-            />
-          }
-        />
-        <Route
-          path='/sign-in'
-          element={
-            <Login
-              onLogin={handleLogin}
-              value={valueLogin}
-              setValue={setValueLogin}
-              isLoading={isLoading}
-            />
-          }
-        />
-        <Route path='*' element={<Error />} />
+        <Route path='/'>
+          <Route
+            index
+            element={
+              <ProtectedRouteElement
+                element={Main}
+                onEditProfile={handleEditProfileClick}
+                onAddPlace={handleAddPlaceClick}
+                onEditAvatar={handleEditAvatarClick}
+                onCardClick={handleCardClick}
+                onCardLike={handleCardLike}
+                onCardDelete={handle}
+                cards={cards}
+                loggedIn={loggedIn}
+                isLoading={isLoading}
+              />
+            }
+          />
+          <Route
+            path='sign-up'
+            element={
+              <Register
+                name='registration'
+                onRegister={onRegister}
+                value={valueRegister}
+                setValue={setValueRegister}
+                isLoading={isLoading}
+              />
+            }
+          />
+          <Route
+            path='sign-in'
+            element={
+              <Login
+                onLogin={handleLogin}
+                value={valueLogin}
+                setValue={setValueLogin}
+                isLoading={isLoading}
+                setEmailUser={setEmailUser}
+                setLoggedIn={setIsLoading}
+              />
+            }
+          />
+          <Route path='*' element={<Error />} />
+        </Route>
       </Routes>
 
       {loggedIn && <Footer />}
@@ -352,7 +331,7 @@ function App() {
         />
       )}
 
-      {loggedIn && (
+      {!loggedIn && (
         <InfoTooltip
           isOpen={isInfoTooltipPopupOpen}
           onClose={closeAllPopups}
