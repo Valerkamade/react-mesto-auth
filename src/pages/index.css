@@ -88,3 +88,14 @@
 @import url(../blocks/error/__title/error__title.css);
 @import url(../blocks/error/__subtitle/error__subtitle.css);
 @import url(../blocks/error/__link/error__link.css);
+
+/* Импорт Sceleton */
+@import url(../blocks/gallery/__title/_sceleton/gallery__title_sceleton.css);
+@import url(../blocks/gallery/__photo/_sceleton/gallery__photo_sceleton.css);
+@import url(../blocks/gallery/__likes-count/_sceleton/gallery__likes-count_sceleton.css);
+@import url(../blocks/gallery/__button-like/_sceleton/gallery__button-like_sceleton.css);
+@import url(../blocks/profile/__avatar/_sceleton/profile__button-avatar_sceleton.css);
+@import url(../blocks/profile/__name/_sceleton/profile__name_sceleton.css);
+@import url(../blocks/profile/__job/_sceleton/profile__job_sceleton.css);
+@import url(../blocks/profile/__button-edit/_sceleton/profile__button-edit_sceleton.css);
+@import url(../blocks/profile/__button-add/_sceleton/profile__button-add_sceleton.css);

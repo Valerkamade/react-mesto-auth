@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -38,6 +44,7 @@ function App() {
   const [valueAvatar, setValueAvatar] = useState({});
   const [valueRegister, setValueRegister] = useState({});
   const [valueLogin, setValueLogin] = useState({});
+  const [loadingContent, setLoadingContent] = useState(true);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -61,12 +68,12 @@ function App() {
     if (!valueLogin.email || !valueLogin.password) {
       return;
     }
+    setIsLoading(true);
     auth
       .authorize(valueLogin)
       .then((data) => {
         if (data.token) {
-          console.log(data);
-          navigate('/');
+          navigate('/', { replace: true });
           localStorage.setItem('jwt', data.token);
           setLoggedIn(true);
           setValueLogin({});
@@ -75,7 +82,8 @@ function App() {
       })
       .catch((err) => {
         return err.then((res) => handleInfoTooltipNegative(res));
-      });
+      })
+      .finally(setIsLoading(false));
   }
 
   function tokenCheck() {
@@ -86,8 +94,7 @@ function App() {
         .then((res) => {
           if (res) {
             setLoggedIn(true);
-            // const url = location.state?.backUrl || '/';
-            navigate('/');
+            // navigate("/", { replace: true });
             setEmailUser(res.data.email);
           }
         })
@@ -105,6 +112,7 @@ function App() {
         .then(([user, card]) => {
           setCurrentUser(user);
           setCards(card);
+          setLoadingContent(false);
         })
         .catch((err) => console.log(err));
     }
@@ -230,53 +238,58 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Header email={emailUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-
+      {/* <SceletonLoading /> */}
       <Routes>
-        <Route path='/'>
-          <Route
-            index
-            element={
-              <ProtectedRouteElement
-                element={Main}
-                onEditProfile={handleEditProfileClick}
-                onAddPlace={handleAddPlaceClick}
-                onEditAvatar={handleEditAvatarClick}
-                onCardClick={handleCardClick}
-                onCardLike={handleCardLike}
-                onCardDelete={handle}
-                cards={cards}
-                loggedIn={loggedIn}
-                isLoading={isLoading}
-              />
-            }
-          />
-          <Route
-            path='sign-up'
-            element={
-              <Register
+        <Route
+          path='/'
+          element={
+            <ProtectedRouteElement
+              element={Main}
+              onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick}
+              onEditAvatar={handleEditAvatarClick}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike}
+              onCardDelete={handle}
+              cards={cards}
+              loggedIn={loggedIn}
+              isLoading={isLoading}
+              isLoadingContent={loadingContent}
+            />
+          }
+        />
+        <Route
+          path='/sign-up'
+          element={
+            loggedIn ? (
+              <Navigate to='/' replace />
+            ) : (
+              loggedIn && <Register
                 name='registration'
                 onRegister={onRegister}
                 value={valueRegister}
                 setValue={setValueRegister}
                 isLoading={isLoading}
               />
-            }
-          />
-          <Route
-            path='sign-in'
-            element={
-              <Login
+            )
+          }
+        />
+        <Route
+          path='/sign-in'
+          element={
+            loggedIn ? (
+              <Navigate to='/' replace />
+            ) : (
+              loggedIn && <Login
                 onLogin={handleLogin}
                 value={valueLogin}
                 setValue={setValueLogin}
                 isLoading={isLoading}
-                setEmailUser={setEmailUser}
-                setLoggedIn={setIsLoading}
               />
-            }
-          />
-          <Route path='*' element={<Error />} />
-        </Route>
+            )
+          }
+        />
+        <Route path='*' element={<Error />} />
       </Routes>
 
       {loggedIn && <Footer />}

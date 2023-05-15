@@ -22,14 +22,14 @@ export default function Header({ loggedIn, email, setLoggedIn }) {
 
   return (
     <header
-      className={`header page__container ${menuActive && `header_active`} ${
-        loggedIn && `header_login`
+      className={`header page__container ${menuActive ? `header_active` : ''} ${
+        loggedIn ? `header_login` : ''
       }`}
     >
       <Link className='header__link' to='/'>
         <img className='header__logo' src={logo} alt='Место Россия' />
       </Link>
-      
+
       {!loggedIn ? (
         <Link to={path} className='header__link'>
           {location.pathname === '/sign-in' ? 'Регистрация' : 'Войти'}
@@ -38,13 +38,16 @@ export default function Header({ loggedIn, email, setLoggedIn }) {
         <>
           <div className='header__wrapper'>
             <span className='header__text'>{email}</span>
-            <button className='header__button-logout button' onClick={onSignOut}>
+            <button
+              className='header__button-logout button'
+              onClick={onSignOut}
+            >
               Выйти
             </button>
           </div>
           <button
             className={`header__button-toggle button ${
-              menuActive && `header__button-toggle_active`
+              menuActive ? `header__button-toggle_active` : ''
             }`}
             type='button'
             aria-label='Окрыть меню'

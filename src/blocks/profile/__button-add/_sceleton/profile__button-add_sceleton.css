@@ -1,0 +1,5 @@
+.profile__button-add_sceleton {
+  border-color: var(--color-placeholder);
+  background-image: none;
+  background-color: var(--color-placeholder);
+}

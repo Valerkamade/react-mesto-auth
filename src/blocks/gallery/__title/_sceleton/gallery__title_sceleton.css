@@ -1,0 +1,7 @@
+.gallery__title_sceleton {
+  background-color: var(--color-placeholder);
+  width: 75%;
+  padding: 0;
+  margin: 25px 0;
+  border-radius: 2px;
+}

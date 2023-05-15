@@ -1,0 +1,5 @@
+.profile__button-avatar_sceleton {
+  background-color: var(--color-placeholder);
+  width: 120px;
+  aspect-ratio: 1;
+}

@@ -1,0 +1,5 @@
+.gallery__likes-count_sceleton {
+  background-color: var(--color-placeholder);
+  width: 20px;
+  border-radius: 2px;
+}

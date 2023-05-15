@@ -1,0 +1,5 @@
+.profile__name_sceleton {
+  background-color: var(--color-placeholder);
+  width: 250px;
+  border-radius: 2px;
+}

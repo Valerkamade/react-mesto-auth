@@ -1,0 +1,12 @@
+.profile__job_sceleton {
+  background-color: var(--color-placeholder);
+  width: 150px;
+  align-self: center;
+  border-radius: 2px;
+}
+
+@media (min-width: 880px) {
+  .profile__job_sceleton {
+    align-self: flex-start;
+  }
+}

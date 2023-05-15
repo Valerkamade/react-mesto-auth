@@ -1,7 +1,11 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import Card from './Card';
 
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import SceletonCard from './SceletonLoading';
+import { initialCards } from '../utils/utils';
+import Profile from './Profile';
+import SceletonProfile from './SceletonProfile';
 
 export default function Main({
   onEditProfile,
@@ -11,50 +15,40 @@ export default function Main({
   onCardLike,
   onCardDelete,
   cards,
+  isLoading,
+  loggedIn,
+  isLoadingContent,
 }) {
   const currentUser = useContext(CurrentUserContext);
+  const cardList = isLoadingContent ? initialCards : cards;
 
   return (
     <main className='main'>
-      <section className='profile page__container'>
-        <div className='profile__wrapper'>
-          <div className='profile__name-edit'>
-            <h1 className='profile__name'>{currentUser.name}</h1>
-            <button
-              className='profile__button-edit button'
-              type='button'
-              aria-label='Изменить аватар'
-              onClick={onEditProfile}
-            ></button>
-          </div>
-          <p className='profile__job'>{currentUser.about}</p>
-        </div>
-        <button className='profile__button-avatar' onClick={onEditAvatar}>
-          <img
-            className='profile__avatar'
-            src={currentUser.avatar}
-            alt={currentUser.name}
-          />
-        </button>
-        <button
-          className='profile__button-add button'
-          type='button'
-          aria-label='Добавить место'
-          onClick={onAddPlace}
-        ></button>
-      </section>
-
+      {isLoadingContent ? (
+        <SceletonProfile />
+      ) : (
+        <Profile
+          currentUser={currentUser}
+          onEditProfile={onEditProfile}
+          onEditAvatar={onEditAvatar}
+          onAddPlace={onAddPlace}
+        />
+      )}
       <section className='gallery page__container' aria-label='Галерея'>
         <ul className='gallery__list'>
-          {cards.map((card) => (
-            <Card
-              card={card}
-              onCardClick={onCardClick}
-              key={card._id}
-              onCardLike={onCardLike}
-              onCardDelete={onCardDelete}
-            />
-          ))}
+          {cardList.map((card, index) =>
+            isLoadingContent ? (
+              <SceletonCard key={index} />
+            ) : (
+              <Card
+                card={card}
+                onCardClick={onCardClick}
+                key={card._id}
+                onCardLike={onCardLike}
+                onCardDelete={onCardDelete}
+              />
+            )
+          )}
         </ul>
       </section>
     </main>

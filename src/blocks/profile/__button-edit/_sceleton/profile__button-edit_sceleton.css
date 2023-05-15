@@ -1,0 +1,5 @@
+.profile__button-edit_sceleton {
+  background-image: none;
+  background-color: var(--color-placeholder);
+  border-color: var(--color-placeholder);
+}

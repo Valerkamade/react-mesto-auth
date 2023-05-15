@@ -1,4 +1,7 @@
 .profile__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   order: 1;
   margin-bottom: 33px;

@@ -5,12 +5,15 @@
   border-radius: 50%;
   cursor: pointer;
   background-color: transparent;
+  flex-shrink: 0;
+  margin-bottom: 26px;
 }
 
 .profile__button-avatar::before {
   opacity: 0;
   content: "";
   position: absolute;
+  border: none;
   top: 0;
   left: 0;
   width: 120px;
