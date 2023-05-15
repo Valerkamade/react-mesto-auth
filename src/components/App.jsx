@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-} from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -47,7 +41,6 @@ function App() {
   const [loadingContent, setLoadingContent] = useState(true);
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   function onRegister() {
     if (valueRegister.password || valueRegister.email) {
@@ -238,7 +231,6 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Header email={emailUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-      {/* <SceletonLoading /> */}
       <Routes>
         <Route
           path='/'
@@ -264,7 +256,7 @@ function App() {
             loggedIn ? (
               <Navigate to='/' replace />
             ) : (
-              loggedIn && <Register
+              <Register
                 name='registration'
                 onRegister={onRegister}
                 value={valueRegister}
@@ -280,7 +272,7 @@ function App() {
             loggedIn ? (
               <Navigate to='/' replace />
             ) : (
-              loggedIn && <Login
+              <Login
                 onLogin={handleLogin}
                 value={valueLogin}
                 setValue={setValueLogin}
